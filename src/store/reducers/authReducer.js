@@ -16,7 +16,7 @@ export const authReducer = createSlice({
       state.user = null;
     },
   },
-  extraReducers: {
+  extraReducers: ()=> {
     // Add extra reducers here
   },
 });
