@@ -57,6 +57,65 @@ export const allNav = [
     title: "Live Chat",
     icon: MdCategory,
     role: "admin",
-    path: "/admin/dashboard/live-chat",
-  }
+    path: "/admin/dashboard/chat-sellers",
+  },
+
+
+  // Seller
+  {
+    id: 9,
+    title: "Dashboard",
+    icon: MdOutlineDashboard,
+    role: "seller",
+    path: "/seller/dashboard",
+  },
+  {
+    id: 10,
+    title: "Add Product",
+    icon: MdOutlineDashboard,
+    role: "seller",
+    path: "/seller/dashboard/add-product",
+  },
+  {
+    id: 11,
+    title: "All Products",
+    icon: MdOutlineDashboard,
+    role: "seller",
+    path: "/seller/dashboard/all-products",
+  },
+  {
+    id: 12,
+    title: "Discount Products",
+    icon: MdOutlineDashboard,
+    role: "seller",
+    path: "/seller/dashboard/discount-products",
+  },
+  {
+    id: 13,
+    title: "Orderes ",
+    icon: MdOutlineDashboard,
+    role: "seller",
+    path: "/seller/dashboard/orders",
+  },
+  {
+    id: 14,
+    title: "Payments",
+    icon: MdOutlineDashboard,
+    role: "seller",
+    path: "/seller/dashboard/payements",
+  },
+  {
+    id: 15,
+    title: "Chat Customers",
+    icon: MdOutlineDashboard,
+    role: "seller",
+    path: "/seller/dashboard/chat-customers",
+  },
+  {
+    id: 16,
+    title: "Chat Support",
+    icon: MdOutlineDashboard,
+    role: "seller",
+    path: "/seller/dashboard/chat-support",
+  },
 ];

@@ -169,7 +169,10 @@ function Orders() {
 
                   {/* View Button */}
                   <td className="py-3 px-3 text-center">
-                    <Link className="flex items-center gap-2 justify-center text-white bg-blue-600 px- py-2 rounded-md text-sm hover:bg-blue-700 transition">
+                    <Link
+                      to="/admin/dashboard/order/details/1"
+                      className="flex items-center gap-2 justify-center text-white bg-blue-600 px- py-2 rounded-md text-sm hover:bg-blue-700 transition"
+                    >
                       <FaEye /> View
                     </Link>
                   </td>

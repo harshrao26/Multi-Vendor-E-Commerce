@@ -23,8 +23,8 @@ const SellerDetails = () => {
           onChange={(e) => setStatus(e.target.value)}
           className="mt-1 p-2 border rounded-md bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
-          <option value="Active"> Active</option>
-          <option value="Deactive"> Deactive</option>
+          <option value="deactive"> Deactive</option>
+          <option value="active"> Active</option>
         </select>
       </div>
       {/* Seller Basic Info */}
