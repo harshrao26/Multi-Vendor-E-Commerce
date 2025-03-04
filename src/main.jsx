@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import store from "./store/index.js";
+import { Toaster } from "react-hot-toast";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
@@ -23,6 +24,33 @@ createRoot(document.getElementById("root")).render(
       }
     >
       <App />
+      <Toaster 
+     toastOptions={
+      {
+        duration: 3000,
+        position: "top-right",
+        style: {
+          background: "#333",
+          color: "#fff",
+        },
+        success: {
+          duration: 3000,
+          theme: {
+            primary: "green",
+            secondary: "black",
+          },
+        },
+        error: {
+          duration: 3000,
+          theme: {
+            primary: "red",
+            secondary: "black",
+          },
+        },
+      }
+     }
+      
+      />
     </Suspense>
   </Provider>
 
