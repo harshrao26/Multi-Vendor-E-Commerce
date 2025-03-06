@@ -2,6 +2,39 @@ import React, { useState } from "react";
 import { FaUpload, FaTimes } from "react-icons/fa";
 
 const AddProduct = () => {
+  const categorys = [
+    { id: 1, name: "Electronics" },
+    { id: 2, name: "Clothing" },
+    { id: 3, name: "Furniture" },
+    { id: 4, name: "Books" },
+    { id: 5, name: "Toys" },
+  ];
+
+  const [categoryShow, setCategoryShow] = useState(false);
+  const [category, setCategory] = useState("");
+  const [searchValue, setSearchValue] = useState("");
+  const [allCategory, setAllCategory] = useState(categorys);
+
+  const categorySearch = (e) => {
+    const value = e.target.value;
+    setSearchValue(value);
+
+    if (value) {
+      const filteredCategories = categorys.filter((c) =>
+        c.name.toLowerCase().includes(value.toLowerCase())
+      );
+      setAllCategory(filteredCategories);
+    } else {
+      setAllCategory(categorys);
+    }
+  };
+
+  const selectCategory = (name) => {
+    setCategory(name);
+    setSearchValue(name);
+    setCategoryShow(false);
+  };
+
   const [productData, setProductData] = useState({
     name: "",
     brand: "",
@@ -13,13 +46,11 @@ const AddProduct = () => {
     images: [],
   });
 
-  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setProductData({ ...productData, [name]: value });
   };
 
-  // Handle multiple image uploads
   const handleImageUpload = (e) => {
     const files = Array.from(e.target.files);
     const imageUrls = files.map((file) => URL.createObjectURL(file));
@@ -30,7 +61,6 @@ const AddProduct = () => {
     }));
   };
 
-  // Remove an uploaded image
   const removeImage = (index) => {
     setProductData((prev) => ({
       ...prev,
@@ -38,22 +68,20 @@ const AddProduct = () => {
     }));
   };
 
-  // Handle form submission (Replace this with actual API call)
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Product Data Submitted:", productData);
+    console.log("Product Data Submitted:", { ...productData, category });
     alert("Product Added Successfully!");
   };
 
   return (
-    <div className="max-w-5xl mx-auto p-8 bg-white shadow-md rounded-lg   ">
+    <div className="max-w-5xl mx-auto p-8 bg-white shadow-md rounded-lg">
       <h2 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
         Add New Product
       </h2>
 
       <form onSubmit={handleSubmit} className="space-y-5 text-sm">
-        {/* Product Name */}
-        <div >
+        <div>
           <label className="block text-gray-700 font-medium">
             Product Name
           </label>
@@ -68,8 +96,7 @@ const AddProduct = () => {
           />
         </div>
 
-        {/* Brand Name */}
-        <div className="">
+        <div>
           <label className="block text-gray-700 font-medium">Brand Name</label>
           <input
             type="text"
@@ -83,20 +110,37 @@ const AddProduct = () => {
         </div>
 
         {/* Category */}
-        <div>
+        <div className="relative">
           <label className="block text-gray-700 font-medium">Category</label>
           <input
             type="text"
-            name="category"
-            value={productData.category}
-            onChange={handleChange}
-            required
+            readOnly
+            value={searchValue}
+            onChange={categorySearch}
+            onFocus={() => setCategoryShow(true)}
+            placeholder="Enter category"
             className="w-full mt-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-            placeholder="Enter product category"
           />
+
+          {categoryShow && (
+            <div className="absolute z-10 w-full bg-white border border-gray-300 mt-1 rounded-lg shadow-md max-h-40 overflow-y-auto">
+              {allCategory.length > 0 ? (
+                allCategory.map((c) => (
+                  <div
+                    key={c.id}
+                    onClick={() => selectCategory(c.name)}
+                    className="p-2 hover:bg-gray-200 cursor-pointer"
+                  >
+                    {c.name}
+                  </div>
+                ))
+              ) : (
+                <p className="p-2 text-gray-500">No matching categories</p>
+              )}
+            </div>
+          )}
         </div>
 
-        {/* Stock, Price & Discount - Inline Inputs */}
         <div className="grid grid-cols-3 gap-4">
           <div>
             <label className="block text-gray-700 font-medium">Stock</label>
@@ -139,7 +183,6 @@ const AddProduct = () => {
           </div>
         </div>
 
-        {/* Description */}
         <div>
           <label className="block text-gray-700 font-medium">Description</label>
           <textarea
@@ -153,7 +196,6 @@ const AddProduct = () => {
           ></textarea>
         </div>
 
-        {/* Image Upload */}
         <div>
           <label className="block text-gray-700 font-medium">
             Upload Product Images
@@ -171,15 +213,14 @@ const AddProduct = () => {
             </label>
           </div>
 
-          {/* Preview Uploaded Images */}
           {productData.images.length > 0 && (
-            <div className="mt-4 grid grid-cols-7  gap-3">
+            <div className="mt-4 grid grid-cols-7 gap-3">
               {productData.images.map((img, index) => (
                 <div key={index} className="relative bg-gray-200">
                   <img
                     src={img}
                     alt="Product Preview"
-                    className=" h-24 rounded-lg border border-gray-300 object-cover"
+                    className="h-24 rounded-lg border border-gray-300 object-cover"
                   />
                   <button
                     onClick={() => removeImage(index)}
@@ -193,7 +234,6 @@ const AddProduct = () => {
           )}
         </div>
 
-        {/* Submit Button */}
         <div>
           <button
             type="submit"
