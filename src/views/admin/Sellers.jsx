@@ -9,7 +9,8 @@ const Seller = () => {
       id: 1,
       name: "John Doe",
       shopName: "Doe Electronics",
-      image: "https://via.placeholder.com/50",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIrNoYu8507EhJwnu42RuHRQtWY6I6pelOsA&s",
       paymentStatus: "Paid",
       email: "johndoe@example.com",
       division: "Dhaka",
@@ -19,7 +20,8 @@ const Seller = () => {
       id: 2,
       name: "Jane Smith",
       shopName: "Smith Fashion",
-      image: "https://via.placeholder.com/50",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqAYjwaH4ujSQYdZX9J-RYvnXR7SjiJSJPjA&s",
       paymentStatus: "Pending",
       email: "janesmith@example.com",
       division: "Chittagong",
@@ -29,7 +31,8 @@ const Seller = () => {
       id: 3,
       name: "Mike Johnson",
       shopName: "Mike's Furniture",
-      image: "https://via.placeholder.com/50",
+      image:
+        "https://media.istockphoto.com/id/495230028/photo/man-passport.jpg?s=612x612&w=0&k=20&c=VNkQgopA0Li9tj9nXvDyk_iqY6r_wVm8wVoV3aLuyXg=",
       paymentStatus: "Paid",
       email: "mikejohnson@example.com",
       division: "Khulna",
@@ -39,7 +42,8 @@ const Seller = () => {
       id: 4,
       name: "Sarah Lee",
       shopName: "Lee Books",
-      image: "https://via.placeholder.com/50",
+      image:
+        "https://t4.ftcdn.net/jpg/05/86/07/29/360_F_586072952_aN7GB5yRKxaznFQX512KUMNAguJLpbrp.jpg",
       paymentStatus: "Pending",
       email: "sarahlee@example.com",
       division: "Barisal",
@@ -49,7 +53,8 @@ const Seller = () => {
       id: 5,
       name: "David Brown",
       shopName: "Brown Toys",
-      image: "https://via.placeholder.com/50",
+      image:
+        "https://t3.ftcdn.net/jpg/00/48/21/44/360_F_48214407_qaZW7HYZ61w7eE272KzyVhNlw7KKOd64.jpg",
       paymentStatus: "Paid",
       email: "davidbrown@example.com",
       division: "Sylhet",

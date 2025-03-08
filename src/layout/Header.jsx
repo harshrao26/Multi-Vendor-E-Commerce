@@ -27,7 +27,7 @@ const Header = ({ showSideBar, setshowSideBar }) => {
           className="w-10 h-10 rounded-full"
         />
         <div className="text-sm">
-          <p className="font-semibold text-gray-800">Admin Name</p>
+          <p className="font-semibold text-gray-800">Abid Khan</p>
           <p className="text-gray-500">Admin</p>
         </div>
       </div>
