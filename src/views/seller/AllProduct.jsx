@@ -158,7 +158,7 @@ const AllProduct = () => {
   const currentProducts = products.slice(firstIndex, lastIndex);
 
   return (
-    <div className="max-w-5xl mx-auto p-6 bg-white shadow-md rounded-lg">
+    <div className="max-w-6xl mx-auto p-6 bg-white shadow-md rounded-lg">
       {/* Search Bar */}
       <Search setItemsPerPage={setItemsPerPage} searchValue={searchValue} />
 
@@ -211,19 +211,19 @@ const AllProduct = () => {
                 <td className="border px-4 py-2">{product.stock}</td>
                 <td className="items-center mt-2 px-4 py-2 flex justify-center space-x-3">
                   {/* Edit Button */}
-                  <button className="text-blue-500 hover:text-blue-700">
+                  <Link to={`/seller/dashboard/edit-product/32`} className="text-blue-500 hover:text-blue-700">
                     <IoMdCreate size={20} />
-                  </button>
+                  </Link >
 
                   {/* View Button */}
-                  <button className="text-green-500 hover:text-green-700">
+                  <Link to="" className="text-green-500 hover:text-green-700">
                     <FaEye size={20} />
-                  </button>
+                  </Link >
 
                   {/* Delete Button */}
-                  <button className="text-red-500 hover:text-red-700">
+                  <Link to="" className="text-red-500 hover:text-red-700">
                     <IoMdTrash size={20} />
-                  </button>
+                  </Link >
                 </td>
               </tr>
             ))}

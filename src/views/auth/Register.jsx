@@ -1,6 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-const Signup = () => {
+import { useDispatch, useSelector } from "react-redux";
+import { PropagateLoader } from "react-spinners";
+import { overrideStyle } from "../../utils/utils";
+import { messageClear, seller_register } from "../../store/reducers/authReducer";
+import toast from "react-hot-toast";
+const Register = () => {
+  const dispatch = useDispatch();
+
+  const { loader, suceessMessage, errorMessage } = useSelector((state) => state.auth);
+
   const [user, setUser] = useState({ name: "", email: "", password: "" });
 
   const inputHandler = (e) => {
@@ -10,12 +19,25 @@ const Signup = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     console.log(user);
+    dispatch(seller_register(user));
   };
+
+  useEffect(()=> {
+   
+    if (suceessMessage) {
+      toast.success(suceessMessage);
+      dispatch(messageClear());
+    }
+    if (errorMessage) {
+      toast.error(errorMessage);
+      dispatch(messageClear());
+    }
+  }, [suceessMessage, errorMessage])
 
   return (
     <div className="flex h-screen w-full bg-gray-00 items-center justify-center">
       <div className="w-[900px] h-[550px] flex shadow-xl rounded-4xl overflow-hidden bg-white">
-        <div className="w-1/2 bg-gradient-to-br from-yellow-100 to-yellow-300 px-12 flex flex-col justify-center">
+        <div className="w-1/2 bg-gradient-to-br from-blue-100 to-blue-300 px-12 flex flex-col justify-center">
           <h1 className="text-gray-900 font-bold text-3xl mb-2">
             Create an account
           </h1>
@@ -26,7 +48,7 @@ const Signup = () => {
               name="name"
               required
               placeholder="Full name"
-              className="w-full px-6 py-3 border rounded-4xl text-gray-700 focus:ring-2 focus:ring-yellow-400"
+              className="w-full px-6 py-3 border rounded-4xl text-gray-700 focus:ring-2 focus:ring-blue-400"
               onChange={inputHandler}
               value={user.name}
             />
@@ -35,7 +57,7 @@ const Signup = () => {
               name="email"
               required
               placeholder="Email"
-              className="w-full px-6 py-3 border rounded-4xl text-gray-700 focus:ring-2 focus:ring-yellow-400"
+              className="w-full px-6 py-3 border rounded-4xl text-gray-700 focus:ring-2 focus:ring-blue-400"
               onChange={inputHandler}
               value={user.email}
             />
@@ -44,16 +66,21 @@ const Signup = () => {
               name="password"
               required
               placeholder="Password"
-              className="w-full px-6 py-3 border rounded-4xl text-gray-700 focus:ring-2 focus:ring-yellow-400"
+              className="w-full px-6 py-3 border rounded-4xl text-gray-700 focus:ring-2 focus:ring-blue-400"
               onChange={inputHandler}
               value={user.password}
             />
             <button
+              disabled={loader ? true : false}
               type="submit"
-              className="w-full bg-yellow-400 hover:bg-yellow-600 text-white font-bold py-3 rounded-4xl transition"
+              className="w-full bg-yellow-400 hover:bg-yellow-600 text-white font-bold py-3 rounded-lg transition"
               onClick={submitHandler}
             >
-              Submit
+              {loader ? (
+                <PropagateLoader color="#fff" cssOverride={overrideStyle} />
+              ) : (
+                "Sign Up"
+              )}
             </button>
           </form>
 
@@ -81,4 +108,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Register;

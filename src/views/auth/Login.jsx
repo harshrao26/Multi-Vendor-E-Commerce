@@ -1,6 +1,17 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { PropagateLoader } from "react-spinners";
+import { overrideStyle } from "../../utils/utils";
+
+import toast from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
+import { messageClear, seller_login } from "../../store/reducers/authReducer";
+
 const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
+  const { loader, errorMessage, suceessMessage } = useSelector((state) => state.auth);
+
 
   const [user, setUser] = useState({ email: "", password: "" });
 
@@ -11,7 +22,23 @@ const Login = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     console.log(user);
+        dispatch(seller_login(user));
+    
   };
+
+
+  useEffect(()=> {
+   
+    if (suceessMessage) {
+      toast.success(suceessMessage);
+      dispatch(messageClear());
+    }
+    if (errorMessage) {
+      toast.error(errorMessage);
+      dispatch(messageClear());
+    }
+  }, [suceessMessage, errorMessage])
+
 
   return (
     <div className="flex h-screen w-full bg-gray-00 items-center justify-center">
@@ -36,12 +63,17 @@ const Login = () => {
               value={user.password}
               className="w-full px-4 py-3 border rounded-lg text-gray-700 focus:ring-2 focus:ring-yellow-400"
             />
-            <button
+           <button
+              disabled={loader ? true : false}
               type="submit"
               className="w-full bg-yellow-400 hover:bg-yellow-600 text-white font-bold py-3 rounded-lg transition"
               onClick={submitHandler}
             >
-              Submit
+              {loader ? 
+                <PropagateLoader color="#fff" cssOverride={overrideStyle} />
+               : 
+                " Login"
+              }
             </button>
           </form>
 

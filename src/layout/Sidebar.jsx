@@ -10,7 +10,7 @@ const Sidebar = ({ setshowSideBar, showSideBar }) => {
 
   useEffect(() => {
 
-    setAllNav(getNav("admin"));
+    setAllNav(getNav("seller"));
   }, []);
 
   return (

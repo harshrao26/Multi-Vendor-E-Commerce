@@ -74,11 +74,11 @@ const AdminLogin = () => {
               className="w-full bg-yellow-400 hover:bg-yellow-600 text-white font-bold py-3 rounded-lg transition"
               onClick={submitHandler}
             >
-              {loader ? (
+              {loader ? 
                 <PropagateLoader color="#fff" cssOverride={overrideStyle} />
-              ) : (
+               : 
                 "Login"
-              )}
+              }
             </button>
           </form>
         </div>
